@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "Official website for Maths Crew YouTube channel",
   "dependencies": {
-    "googleapis": "*"
+    "googleapis": "^109.0.1"
   }
 }
