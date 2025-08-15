@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Maths Crew — Official Website</title>
+  <meta name="description" content="Maths Crew is an educational YouTube channel from Sri Lanka: study tips, motivation, education info, and lessons. Subscribe & stay with us ❤" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root{
+      --mc-blue:#0ea5e9;
+      --mc-red:#ef4444;
+      --mc-bg:#090a12;
+    }
+    html,body{height:100%;background:radial-gradient(1200px 600px at 20% -10%, rgba(14,165,233,.15), transparent 60%),radial-gradient(900px 600px at 110% 20%, rgba(239,68,68,.15), transparent 60%),#090a12;color:#e5e7eb;}
+    .glass{backdrop-filter: blur(12px); background: linear-gradient( to bottom right, rgba(14,165,233,.10), rgba(239,68,68,.10)); border: 1px solid rgba(255,255,255,.08)}
+    .neon-text{ text-shadow: 0 0 12px rgba(14,165,233,.55), 0 0 22px rgba(239,68,68,.45);}
+    .btn-grad{ background-image: linear-gradient(135deg, var(--mc-blue), var(--mc-red)); }
+    .ring-grad{ box-shadow: 0 0 0 3px rgba(14,165,233,.25), 0 0 0 6px rgba(239,68,68,.20);}
+    .glow{ box-shadow: 0 10px 40px rgba(14,165,233,.25), 0 10px 50px rgba(239,68,68,.20);}
+    .grid-overlay{
+      position: absolute; inset: 0; pointer-events:none;
+      background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size: 40px 40px; mask-image: radial-gradient(ellipse at center, rgba(0,0,0,.6), transparent 70%);
+    }
+    .chatbot-fab{position:fixed; right:18px; bottom:18px; z-index:60}
+    .chat-panel{position:fixed; right:18px; bottom:86px; width:360px; max-width:92vw; height:540px; transform-origin:bottom right; z-index:60}
+    .scroll-smooth{scroll-behavior:smooth}
+  </style>
+</head>
+<body class="scroll-smooth font-[Outfit] selection:bg-sky-500/30 selection:text-white">
+  <div class="pointer-events-none fixed -top-24 -left-24 h-96 w-96 rounded-full blur-3xl opacity-40" style="background:radial-gradient(circle, rgba(14,165,233,.35) 0%, rgba(14,165,233,0) 70%)"></div>
+  <div class="pointer-events-none fixed bottom-0 -right-24 h-[28rem] w-[28rem] rounded-full blur-3xl opacity-40" style="background:radial-gradient(circle, rgba(239,68,68,.35) 0%, rgba(239,68,68,0) 70%)"></div>
+  
+  <header class="sticky top-0 z-40 backdrop-blur bg-black/30 border-b border-white/10">
+    <div class="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-2">
+        <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-sky-500 to-red-500 grid place-content-center text-white font-bold">MC</div>
+        <span class="text-lg md:text-xl font-semibold">Maths Crew</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm text-gray-300">
+        <a href="#about" class="hover:text-white">About</a>
+        <a href="#latest" class="hover:text-white">Latest</a>
+        <a href="#analytics" class="hover:text-white">Analytics</a>
+        <a href="#contact" class="hover:text-white">Contact</a>
+        <a href="#subscribe" class="ml-2 inline-flex items-center gap-2 px-4 py-2 rounded-xl btn-grad text-white glow">Subscribe</a>
+      </nav>
+    </div>
+  </header>
+
+  <section id="home" class="relative">
+    <div class="grid-overlay"></div>
+    <div class="mx-auto max-w-7xl px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
+      <div data-aos="fade-right">
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight neon-text">Join the Maths Crew<br><span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-red-400">Your Journey to Smarter Learning Starts Here.</span></h1>
+        <p class="mt-5 text-gray-300 text-lg">"Be a good human and work hard. The nature will definitely help you to achieve your goals... ✨️"</p>
+        <div class="mt-7 flex flex-wrap items-center gap-3">
+          <a id="ytLink" href="https://www.youtube.com/@mathscrew" target="_blank" class="px-5 py-3 rounded-xl btn-grad text-white font-semibold glow inline-flex items-center gap-2">
+            <i data-lucide="youtube"></i> Visit Channel
+          </a>
+          <a href="#latest" class="px-5 py-3 rounded-xl border border-white/20 hover:border-white/40 transition inline-flex items-center gap-2">
+            <i data-lucide="play-circle"></i> Watch Latest
+          </a>
+        </div>
+        <div class="mt-6 flex items-center gap-6 text-sm text-gray-400">
+          <div class="flex items-center gap-2"><i data-lucide="check-circle"></i> Smart Study Tips</div>
+          <div class="flex items-center gap-2"><i data-lucide="check-circle"></i> Motivation</div>
+          <div class="flex items-center gap-2"><i data-lucide="check-circle"></i> Lessons</div>
+        </div>
+      </div>
+      <div data-aos="fade-left" class="relative">
+        <div class="aspect-video rounded-2xl glass ring-grad glow overflow-hidden">
+          <iframe id="featuredVideo" class="w-full h-full" src="" title="Maths Crew Featured" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="absolute -bottom-6 -left-6 bg-black/60 border border-white/10 rounded-2xl p-4 backdrop-blur hidden sm:flex items-center gap-3">
+          <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-sky-500 to-red-500 grid place-content-center">🚀</div>
+          <div>
+            <p class="text-sm text-gray-300">Latest Video</p>
+            <p class="text-xs text-gray-400">from Maths crew</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="py-14 md:py-20">
+    <div class="mx-auto max-w-7xl px-4 grid md:grid-cols-2 gap-10 items-start">
+      <div class="space-y-6" data-aos="fade-up">
+        <h2 class="text-3xl md:text-4xl font-bold">About Maths Crew</h2>
+        <p class="text-gray-300 leading-relaxed">Maths Crew is an educational YouTube channel in Sri Lanka. You can learn about the following topics through this channel:</p>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-gray-200">
+          <li class="flex items-center gap-2"><i data-lucide="badge-check"></i> Smart Education Studying Tips</li>
+          <li class="flex items-center gap-2"><i data-lucide="badge-check"></i> Motivational Videos</li>
+          <li class="flex items-center gap-2"><i data-lucide="badge-check"></i> Educational info</li>
+          <li class="flex items-center gap-2"><i data-lucide="badge-check"></i> Lessons in more categories</li>
+        </ul>
+        <p class="text-gray-400">Subscribe 🔔 & share 🔗 our contents</p>
+      </div>
+      <div class="glass rounded-2xl p-6 ring-grad glow" data-aos="fade-left">
+        <h3 class="text-xl font-semibold mb-4">About Me</h3>
+        <p class="text-gray-300">✔ I'm Gihan [BSc.(UG) University of Peradeniya]</p>
+        <div class="mt-6 grid grid-cols-2 gap-4">
+          <a href="https://www.facebook.com/mcyt.edu" target="_blank" class="glass rounded-xl p-4 hover:bg-white/10 transition flex items-center gap-3">
+            <i data-lucide="facebook"></i> Facebook
+          </a>
+          <a href="https://whatsapp.com/channel/0029VaDpnLAAYlUL6Ta4Wo1F" target="_blank" class="glass rounded-xl p-4 hover:bg-white/10 transition flex items-center gap-3">
+            <i data-lucide="message-circle"></i> WhatsApp Channel
+          </a>
+          <a href="mailto:mathscrewyt@gmail.com" class="glass rounded-xl p-4 hover:bg-white/10 transition flex items-center gap-3">
+            <i data-lucide="mail"></i> Email
+          </a>
+          <a href="tel:+94773248579" class="glass rounded-xl p-4 hover:bg-white/10 transition flex items-center gap-3">
+            <i data-lucide="phone"></i> 077 324 8579
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="analytics" class="py-16 bg-black/30 border-y border-white/10">
+    <div class="mx-auto max-w-7xl px-4">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-3xl font-bold">Channel Analytics</h2>
+        <button id="refreshAnalytics" class="px-4 py-2 rounded-xl border border-white/20 hover:border-white/40 inline-flex items-center gap-2"><i data-lucide="refresh-cw"></i> Refresh</button>
+      </div>
+      <div class="grid sm:grid-cols-3 gap-5">
+        <div class="glass rounded-2xl p-6 ring-grad" data-aos="zoom-in">
+          <div class="text-sm text-gray-400">Subscribers</div>
+          <div id="subsCount" class="text-3xl font-extrabold mt-2">—</div>
+        </div>
+        <div class="glass rounded-2xl p-6 ring-grad" data-aos="zoom-in" data-aos-delay="100">
+          <div class="text-sm text-gray-400">Total Views</div>
+          <div id="viewsCount" class="text-3xl font-extrabold mt-2">—</div>
+        </div>
+        <div class="glass rounded-2xl p-6 ring-grad" data-aos="zoom-in" data-aos-delay="200">
+          <div class="text-sm text-gray-400">Video Count</div>
+          <div id="videosCount" class="text-3xl font-extrabold mt-2">—</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="latest" class="py-16">
+    <div class="mx-auto max-w-7xl px-4">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-3xl font-bold">Latest Uploads</h2>
+        <div class="flex items-center gap-3">
+          <button id="refreshLatest" class="px-4 py-2 rounded-xl border border-white/20 hover:border-white/40 inline-flex items-center gap-2"><i data-lucide="refresh-cw"></i> Reload</button>
+          <a target="_blank" href="https://www.youtube.com/@mathscrew/videos" class="px-4 py-2 rounded-xl btn-grad text-white">Open on YouTube</a>
+        </div>
+      </div>
+      <div id="videosGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
+  <section id="subscribe" class="py-16 bg-black/30 border-y border-white/10">
+    <div class="mx-auto max-w-7xl px-4 grid md:grid-cols-2 gap-10 items-center">
+      <div data-aos="fade-up">
+        <h3 class="text-3xl font-bold">Join with us !</h3>
+        <p class="text-gray-300 mt-3">Motivation, study hacks, and lessons that boost your future. Subscribe and share to support the mission.</p>
+        <a href="https://www.youtube.com/@mathscrew?sub_confirmation=1" target="_blank" class="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-xl btn-grad text-white glow"><i data-lucide="bell-ring"></i> Subscribe on YouTube</a>
+      </div>
+      <div class="glass rounded-2xl p-6 ring-grad" data-aos="fade-left">
+        <h4 class="font-semibold">🚀 Become part of the Maths Crew family! </h4>
+        <p class="text-gray-300 mt-2">
+        Join our educational community where learning meets inspiration. Connect with us through multiple platforms, chat with our team, get instant updates on new content, and never miss out on valuable educational resources. Whether you need study tips, motivation, or have questions about any topic, we're here to support your educational journey every step of the way!
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-16">
+    <div class="mx-auto max-w-7xl px-4 grid md:grid-cols-2 gap-10 items-start">
+      <div class="glass rounded-2xl p-6 ring-grad" data-aos="fade-right">
+        <h3 class="text-2xl font-bold">Contact Us (For ADs)</h3>
+        <div class="mt-4 space-y-3 text-gray-300">
+          <p>✔ email - <a class="underline hover:text-white" href="mailto:mathscrewyt@gmail.com">mathscrewyt@gmail.com</a></p>
+          <p>✔ Whatsapp - <a class="underline hover:text-white" href="https://wa.me/94773248579" target="_blank">0773248579</a> (Message Only)</p>
+        </div>
+        <div class="mt-6 flex items-center gap-3">
+          <a href="https://www.facebook.com/mcyt.edu" target="_blank" class="px-4 py-2 rounded-xl border border-white/20 hover:border-white/40 inline-flex items-center gap-2"><i data-lucide="facebook"></i> Facebook</a>
+          <a href="https://whatsapp.com/channel/0029VaDpnLAAYlUL6Ta4Wo1F" target="_blank" class="px-4 py-2 rounded-xl border border-white/20 hover:border-white/40 inline-flex items-center gap-2"><i data-lucide="message-circle"></i> WhatsApp Channel</a>
+        </div>
+      </div>
+      <div class="glass rounded-2xl p-6 ring-grad" data-aos="fade-left">
+        <h3 class="text-2xl font-bold">Send a Message</h3>
+        <form name="contact" data-netlify="true" id="msgForm" class="mt-4 grid gap-3">
+          <input class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-sky-500" placeholder="Your Name" required name="name" />
+          <input type="email" class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-sky-500" placeholder="Your Email" required name="email" />
+          <textarea rows="4" class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-sky-500" placeholder="Message" required name="message"></textarea>
+          <button type="submit" class="mt-2 px-5 py-3 rounded-xl btn-grad text-white">Send</button>
+        </form>
+        <p id="msgFeedback" class="text-sm text-gray-400 mt-2 hidden">Thanks! We'll get back to you soon.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-10 border-t border-white/10">
+    <div class="mx-auto max-w-7xl px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-gray-400">© <span id="year"></span> Maths Crew · All Right Reserved</p>
+      <div class="flex items-center gap-4 text-gray-300">
+        <a class="hover:text-white" target="_blank" href="https://www.youtube.com/@mathscrew"><i data-lucide="youtube"></i></a>
+        <a class="hover:text-white" target="_blank" href="https://www.facebook.com/mcyt.edu"><i data-lucide="facebook"></i></a>
+        <a class="hover:text-white" target="_blank" href="https://whatsapp.com/channel/0029VaDpnLAAYlUL6Ta4Wo1F"><i data-lucide="message-circle"></i></a>
+        <a class="hover:text-white" href="mailto:mathscrewyt@gmail.com"><i data-lucide="mail"></i></a>
+      </div>
+    </div>
+    <div class="mt-4 text-center text-xs text-gray-500">Develop by Gihan S Gamage 🖤</div>
+  </footer>
+
+  <button id="chatFab" class="chatbot-fab h-14 w-14 rounded-full btn-grad text-white grid place-content-center glow">
+    <i data-lucide="bot"></i>
+  </button>
+  <div id="chatPanel" class="chat-panel hidden">
+    <div class="glass rounded-2xl overflow-hidden ring-grad glow flex flex-col h-full">
+      <div class="px-4 py-3 border-b border-white/10 flex items-center justify-between">
+        <div class="flex items-center gap-2"><i data-lucide="bot"></i><span class="font-semibold">Maths Crew Helper</span></div>
+        <button id="chatClose" class="p-2 rounded-lg hover:bg-white/10"><i data-lucide="x"></i></button>
+      </div>
+      <div id="chatMsgs" class="flex-1 overflow-y-auto p-4 space-y-3"></div>
+      <form id="chatForm" class="p-3 border-t border-white/10 flex items-center gap-2">
+        <input id="chatInput" class="flex-1 px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-sky-500" placeholder="Ask about channel, videos, tips..." />
+        <button class="px-4 py-3 rounded-xl btn-grad text-white">Send</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    const CHANNEL_HANDLE = "@mathscrew";
+    const FALLBACK_QUERY = "Maths Crew";
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+    const fmt = new Intl.NumberFormat();
+    function setYear(){ $('#year').textContent = new Date().getFullYear(); }
+    function iconize(){
+      if (window.lucide) lucide.createIcons();
+    }
+    AOS.init({ once: true, duration: 700, easing: 'ease-out-quart' });
+    function toast(msg){
+      const t = document.createElement('div');
+      t.className = 'fixed left-1/2 -translate-x-1/2 bottom-6 px-4 py-2 rounded-xl glass ring-grad glow';
+      t.textContent = msg; document.body.appendChild(t);
+      setTimeout(()=>{ t.remove(); }, 2600);
+    }
+    async function fetchAPI(endpoint, params = {}) {
+      try {
+        const response = await fetch(`/.netlify/functions/youtube?endpoint=${endpoint}&${new URLSearchParams(params)}`);
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        return await response.json();
+      } catch (error) {
+        console.error('API Error:', error);
+        throw error;
+      }
+    }
+    async function getChannelId(){
+      try {
+        const data = await fetchAPI('channels', { 
+          forHandle: CHANNEL_HANDLE, 
+          part: 'id' 
+        });
+        if (data.items && data.items[0]?.id) return data.items[0].id;
+      } catch(e){ }
+      const sData = await fetchAPI('search', { 
+        part: 'snippet', 
+        type: 'channel', 
+        maxResults: 1, 
+        q: FALLBACK_QUERY 
+      });
+      const chId = sData.items?.[0]?.snippet?.channelId;
+      if (!chId) throw new Error('Channel not found');
+      return chId;
+    }
+    async function getChannelDetails(channelId){
+      return await fetchAPI('channels', { 
+        id: channelId, 
+        part: 'snippet,statistics,contentDetails' 
+      });
+    }
+    async function getLatestVideos(uploadsPlaylistId, max=6){
+      return await fetchAPI('playlistItems', { 
+        playlistId: uploadsPlaylistId,
+        part: 'snippet,contentDetails',
+        maxResults: max
+      });
+    }
+    function renderAnalytics(stats){
+      $('#subsCount').textContent = stats.hiddenSubscriberCount ? 
+        'Hidden' : fmt.format(+stats.subscriberCount || 0);
+      $('#viewsCount').textContent = fmt.format(+stats.viewCount || 0);
+      $('#videosCount').textContent = fmt.format(+stats.videoCount || 0);
+    }
+    function renderVideos(items){
+      const grid = $('#videosGrid');
+      grid.innerHTML = '';
+      items.forEach((it, i) => {
+        const s = it.snippet;
+        const vid = it.contentDetails?.videoId || s.resourceId?.videoId || '';
+        const url = `https://www.youtube.com/watch?v=${vid}`;
+        const card = document.createElement('a');
+        card.href = url; 
+        card.target = '_blank';
+        card.className = 'group block rounded-2xl overflow-hidden glass ring-grad hover:scale-[1.01] transition glow';
+        card.innerHTML = `
+          <div class="relative aspect-video">
+            <img src="${s.thumbnails?.high?.url || s.thumbnails?.medium?.url || ''}" 
+                 alt="${s.title}" 
+                 class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+          </div>
+          <div class="p-4">
+            <h4 class="font-semibold line-clamp-2">${s.title}</h4>
+            <p class="text-xs text-gray-400 mt-1">${new Date(s.publishedAt).toLocaleDateString()}</p>
+          </div>`;
+        grid.appendChild(card);
+        if (i === 0) {
+          const embed = `https://www.youtube.com/embed/${vid}?rel=0&modestbranding=1&autoplay=0`;
+          $('#featuredVideo').src = embed;
+        }
+      });
+      if (!items.length) {
+        grid.innerHTML = `<div class='text-gray-400'>No videos found.</div>`;
+      }
+    }
+    async function loadAll(){
+      try {
+        const id = await getChannelId();
+        const details = await getChannelDetails(id);
+        if (!details) throw new Error('Channel details not available');
+        renderAnalytics(details.statistics || {});
+        const uploads = details.contentDetails?.relatedPlaylists?.uploads;
+        if (uploads) {
+          const vids = await getLatestVideos(uploads, 6);
+          renderVideos(vids);
+        }
+      } catch (err) {
+        console.error(err);
+        toast('Could not load channel data.');
+      } finally { 
+        iconize(); 
+      }
+    }
+    $('#msgForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      $('#msgFeedback').classList.remove('hidden');
+      e.target.reset();
+      toast('Message sent (demo)');
+    });
+    const chatState = { open: false };
+    const chatMsgs = $('#chatMsgs');
+    function pushMsg(role, text) {
+      const row = document.createElement('div');
+      row.className = role === 'user' ? 'flex justify-end' : 'flex justify-start';
+      const bubble = document.createElement('div');
+      bubble.className = 'max-w-[80%] rounded-2xl px-4 py-3 ' + 
+        (role === 'user' ? 'bg-gradient-to-br from-sky-500/70 to-red-500/70 text-white' : 'glass');
+      bubble.innerHTML = text; 
+      row.appendChild(bubble); 
+      chatMsgs.appendChild(row); 
+      chatMsgs.scrollTop = chatMsgs.scrollHeight;
+    }
+    function botReply(q) {
+      q = q.toLowerCase();
+      if (q.includes('hello') || q.includes('hi')) {
+        return 'Hello! Ask me about study tips, motivation, or latest videos.';
+      }
+      if (q.includes('subscribe')) {
+        return 'Click the bell 🔔 here: <a class="underline" target="_blank" href="https://www.youtube.com/@mathscrew?sub_confirmation=1">Subscribe</a>.';
+      }
+      if (q.includes('contact') || q.includes('ads')) {
+        return 'Email: <a class="underline" href="mailto:mathscrewyt@gmail.com">mathscrewyt@gmail.com</a> | WhatsApp: <a class="underline" target="_blank" href="https://wa.me/94773248579">0773248579</a> (Message Only)';
+      }
+      if (q.includes('latest') || q.includes('video')) {
+        return 'Scroll to <b>Latest Uploads</b> or open <a target="_blank" class="underline" href="https://www.youtube.com/@mathscrew/videos">all videos</a>.';
+      }
+      if (q.includes('tips') || q.includes('study')) {
+        return 'Study Tips: set SMART goals, use Pomodoro (25/5), active recall + spaced repetition, and teach-back method.';
+      }
+      if (q.includes('motivation')) {
+        return 'Small consistent steps win. Be a good human & work hard — nature will help you. ✨️';
+      }
+      return "I'm a simple helper. Try asking about <i>subscribe</i>, <i>contact</i>, or <i>latest</i>.";
+    }
+    $('#chatFab').addEventListener('click', () => {
+      chatState.open = !chatState.open;
+      $('#chatPanel').classList.toggle('hidden', !chatState.open);
+    });
+    $('#chatClose').addEventListener('click', () => { 
+      chatState.open = false; 
+      $('#chatPanel').classList.add('hidden'); 
+    });
+    $('#chatForm').addEventListener('submit', (e) => {
+      e.preventDefault(); 
+      const inp = $('#chatInput'); 
+      const q = inp.value.trim(); 
+      if (!q) return; 
+      pushMsg('user', q); 
+      inp.value = ''; 
+      setTimeout(() => { 
+        pushMsg('bot', botReply(q)); 
+      }, 350);
+    });
+    $('#refreshAnalytics').addEventListener('click', loadAll);
+    $('#refreshLatest').addEventListener('click', loadAll);
+    document.addEventListener('DOMContentLoaded', () => {
+      setYear(); 
+      iconize(); 
+      loadAll();
+    });
+  </script>
+</body>
+</html>
