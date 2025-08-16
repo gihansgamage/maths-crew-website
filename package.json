@@ -2,8 +2,11 @@
   "name": "maths-crew-website",
   "version": "1.0.0",
   "description": "Official website for Maths Crew YouTube channel",
+  "scripts": {
+    "start": "serve public"
+  },
   "dependencies": {
     "googleapis": "^109.0.1",
-    "dotenv": "^16.0.0"
+    "serve": "^14.2.0"
   }
 }
