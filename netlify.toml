@@ -3,12 +3,6 @@
   publish = "."
   functions = "functions"
 
-[[redirects]]
-  from = "/.netlify/functions/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-  force = true
-
 [dev]
   framework = "#static"
   targetPort = 3000
