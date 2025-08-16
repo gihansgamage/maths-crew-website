@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const { google } = require('googleapis');
 
 exports.handler = async (event, context) => {
