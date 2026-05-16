@@ -247,15 +247,16 @@
       t.textContent = msg; document.body.appendChild(t);
       setTimeout(()=>{ t.remove(); }, 2600);
     }
+    async function fetchJSON(url) {
+      const response = await fetch(url, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`HTTP ${response.status} for ${url}`);
+      return await response.json();
+    }
     async function fetchAPI(endpoint, params = {}) {
-      try {
-        const response = await fetch(`/.netlify/functions/youtube?endpoint=${endpoint}&${new URLSearchParams(params)}`);
-        if (!response.ok) throw new Error('HTTP ' + response.status);
-        return await response.json();
-      } catch (error) {
-        console.error('API Error:', error);
-        throw error;
-      }
+      return await fetchJSON(`/.netlify/functions/youtube?endpoint=${endpoint}&${new URLSearchParams(params)}`);
+    }
+    function unwrapFirstItem(response) {
+      return response?.items?.[0] || null;
     }
     async function getChannelId(){
       try {
@@ -263,7 +264,8 @@
           forHandle: CHANNEL_HANDLE, 
           part: 'id' 
         });
-        if (data.items && data.items[0]?.id) return data.items[0].id;
+        const id = unwrapFirstItem(data)?.id;
+        if (id) return id;
       } catch(e){ }
       const sData = await fetchAPI('search', { 
         part: 'snippet', 
@@ -271,50 +273,71 @@
         maxResults: 1, 
         q: FALLBACK_QUERY 
       });
-      const chId = sData.items?.[0]?.snippet?.channelId;
+      const chId = unwrapFirstItem(sData)?.snippet?.channelId;
       if (!chId) throw new Error('Channel not found');
       return chId;
     }
     async function getChannelDetails(channelId){
-      return await fetchAPI('channels', { 
+      const data = await fetchAPI('channels', { 
         id: channelId, 
         part: 'snippet,statistics,contentDetails' 
       });
+      return unwrapFirstItem(data);
     }
     async function getLatestVideos(uploadsPlaylistId, max=6){
-      return await fetchAPI('playlistItems', { 
+      const data = await fetchAPI('playlistItems', { 
         playlistId: uploadsPlaylistId,
         part: 'snippet,contentDetails',
         maxResults: max
       });
+      return data?.items || [];
     }
-    function renderAnalytics(stats){
+    async function getStaticYouTubeData() {
+      const data = await fetchJSON('data/youtube.json');
+      if (!data?.channel) throw new Error('Static YouTube data has not been generated yet');
+      return data;
+    }
+    function renderAnalytics(stats = {}){
       $('#subsCount').textContent = stats.hiddenSubscriberCount ? 
         'Hidden' : fmt.format(+stats.subscriberCount || 0);
       $('#viewsCount').textContent = fmt.format(+stats.viewCount || 0);
       $('#videosCount').textContent = fmt.format(+stats.videoCount || 0);
     }
-    function renderVideos(items){
+    function escapeHTML(value = '') {
+      return String(value).replace(/[&<>'"]/g, (char) => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        "'": '&#39;',
+        '"': '&quot;'
+      }[char]));
+    }
+    function renderVideos(items = []){
       const grid = $('#videosGrid');
       grid.innerHTML = '';
       items.forEach((it, i) => {
-        const s = it.snippet;
+        const s = it.snippet || {};
         const vid = it.contentDetails?.videoId || s.resourceId?.videoId || '';
+        if (!vid) return;
+        const title = escapeHTML(s.title || 'YouTube video');
+        const thumb = s.thumbnails?.high?.url || s.thumbnails?.medium?.url || s.thumbnails?.default?.url || '';
+        const date = s.publishedAt ? new Date(s.publishedAt).toLocaleDateString() : '';
         const url = `https://www.youtube.com/watch?v=${vid}`;
         const card = document.createElement('a');
         card.href = url; 
         card.target = '_blank';
+        card.rel = 'noopener noreferrer';
         card.className = 'group block rounded-2xl overflow-hidden glass ring-grad hover:scale-[1.01] transition glow';
         card.innerHTML = `
           <div class="relative aspect-video">
-            <img src="${s.thumbnails?.high?.url || s.thumbnails?.medium?.url || ''}" 
-                 alt="${s.title}" 
+            <img src="${thumb}" 
+                 alt="${title}" 
                  class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
           </div>
           <div class="p-4">
-            <h4 class="font-semibold line-clamp-2">${s.title}</h4>
-            <p class="text-xs text-gray-400 mt-1">${new Date(s.publishedAt).toLocaleDateString()}</p>
+            <h4 class="font-semibold line-clamp-2">${title}</h4>
+            <p class="text-xs text-gray-400 mt-1">${date}</p>
           </div>`;
         grid.appendChild(card);
         if (i === 0) {
@@ -322,23 +345,32 @@
           $('#featuredVideo').src = embed;
         }
       });
-      if (!items.length) {
+      if (!grid.children.length) {
         grid.innerHTML = `<div class='text-gray-400'>No videos found.</div>`;
       }
     }
+    async function loadLiveYouTubeData(){
+      const id = await getChannelId();
+      const channel = await getChannelDetails(id);
+      if (!channel) throw new Error('Channel details not available');
+      const uploads = channel.contentDetails?.relatedPlaylists?.uploads;
+      const videos = uploads ? await getLatestVideos(uploads, 6) : [];
+      return { channel, videos };
+    }
     async function loadAll(){
       try {
-        const id = await getChannelId();
-        const details = await getChannelDetails(id);
-        if (!details) throw new Error('Channel details not available');
-        renderAnalytics(details.statistics || {});
-        const uploads = details.contentDetails?.relatedPlaylists?.uploads;
-        if (uploads) {
-          const vids = await getLatestVideos(uploads, 6);
-          renderVideos(vids);
+        let data;
+        try {
+          data = await getStaticYouTubeData();
+        } catch (staticError) {
+          console.warn('Static YouTube data unavailable, trying Netlify function:', staticError);
+          data = await loadLiveYouTubeData();
         }
+        renderAnalytics(data.channel?.statistics || {});
+        renderVideos(data.videos || []);
       } catch (err) {
         console.error(err);
+        $('#videosGrid').innerHTML = `<div class="text-gray-400">Could not load channel data. If this site is hosted on GitHub Pages, run the "Update YouTube data" workflow after adding the YOUTUBE_API_KEY repository secret.</div>`;
         toast('Could not load channel data.');
       } finally { 
         iconize(); 
